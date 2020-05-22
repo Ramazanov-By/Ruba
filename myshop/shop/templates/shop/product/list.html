@@ -1,0 +1,40 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+{% block content %}
+
+    <section class="product">
+        <div class="container">
+            <h1 class="product__heading">{% if category %}{{ category.name }}{% else %}Все продукты{% endif %}</h1>
+
+            <div class="product__head row">
+                <div class="col-md-3 ml-auto">
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product__list row">
+
+            {% for product in products %}
+                <a class="product__link col-md-3 col-6" href="{{ product.get_absolute_url }}">
+                    <div class="card ">
+                        <img class="card-img-top" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="Card image cap">
+                        <div class="card-body">
+                            <div class="card__head">{{ product.name }}</div>
+                            <p class="card__price">{{ product.price }} руб</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+            </div> <!-- /row-->
+
+        </div>
+    </section> <!-- /product-->
+{% endblock %}

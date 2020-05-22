@@ -1,0 +1,201 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.title }}{% else %}Products{% endif %}
+{% endblock %}
+{% block content %}
+
+                <section class="section-slider">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div class="container">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            </ol>
+
+                            <div class="carousel-inner">
+                                {% for banner in banners %}
+                                    <div class="carousel-item" id="carousel-sl">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <img class="carousel-item__img d-block w-100" src="{{ banner.image.url }}" alt="{{ banner.description }}">
+                                                <div class="carousel-caption d-md-block col-lg-5 col-md-10">
+                                                    <h3 class="carousel-item__head">{{ banner.title }}
+                                                    </h3>
+                                                    <p class="carousel-item__text">{{ banner.description }}</p>
+                                                   <a class="btn btn__white" href="{% url "shop:product_list" %}">Подробнее</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                <!-- стрелки на слайдере -->
+
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+
+                                <!-- /стрелки на слайдере -->
+
+                            </div> <!-- /carousel-inner -->
+                        </div>
+                    </div> <!-- /carouselExampleIndicators carousel slide -->
+                </section>
+
+                <!-- product-categories -->
+                <div class="product-categories">
+                    <div class="container">
+                        <div class="row">
+
+                        {% for c in brands %}
+                            <a class="product-categories__link col-md-4" href="{% url "shop:brand" %}">
+                                <div class="product-categories__item">
+                                    <h3 class="product-categories__head">{{ c.name }}</h3>
+                                    <img class="rounded-lg product-categories__img" src="{% if c.image %}{{ c.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="{{ c.name }}">
+
+                                </div>
+                            </a>
+                        {% endfor %}
+
+                        </div> <!-- /row -->
+
+                    </div> <!-- /container -->
+                </div> <!-- /product-categories -->
+
+                <div class="product">
+                    <div class="container">
+                        <a class="product-title__link" href="{% url "shop:product_listNew" %}">
+                            <div class="product__head">Новинки</div>
+                        </a>
+
+                        <div class="product__list row">
+                            {% for product in new %}
+                            <a class="product__link col-md-3 col-6" href="{{ product.get_absolute_url }}">
+                                <div class="card">
+                                    <img class="card-img-top" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <div class="card__head">{{ product.name }}</div>
+                                        <p class="card__price">{{ product.price }} руб</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+
+                        </div> <!-- /row-->
+
+                    </div>
+                </div> <!-- /product-->
+
+                <!-- section-blog__record -->
+                <section class="section-blog__record">
+                    {% for about in about %}
+                        <div class="information container">
+
+                            <div class="information__content row">
+                                <div class="information__img col-md-6">
+                                    <img class="img-fluid rounded-lg" src="{{ about.image.url }}" alt="{{about.title}}">
+                                </div>
+                                <div class="information__caption col-md-6">
+                                    <h3 class="information__head">{{about.title}}</h3>
+                                    <p class="information__text">{{about.description}}</p>
+                                </div>
+                            </div>
+
+                        </div> <!-- /container-->
+
+                   {% endfor %}
+                </section>
+
+                <div class="product">
+                    <div class="container">
+                         <a class="product-title__link" href="{% url "shop:product_listSale" %}">
+                            <div class="product__head">Распродажа</div>
+                        </a>
+                        <div class="product__list row">
+                            {% for product in sale %}
+                            <a class="product__link col-md-3 col-6" href="{{ product.get_absolute_url }}">
+                                <div class="card">
+                                    <img class="card-img-top" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <div class="card__head">{{ product.name }}</div>
+                                        <p class="card__price">{{ product.price }} руб</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+
+                        </div> <!-- /row-->
+
+                    </div>
+                </div> <!-- /product-->
+
+                <section class="section-blog">
+                    <div class="container">
+
+                        <div class="section-blog__head">Новые записи</div>
+
+                        <div class="section-blog__card row">
+                            <a class="section-blog__link col-lg-4 col-md-12" href="blog-article.html">
+                                <div class="card">
+                                    <img src="https://images.unsplash.com/photo-1550461716-dbf266b2a8a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="post">
+                                    <div class="card-body card-body__blog">
+                                        <small class="text-muted cat">
+                                            <svg class="time-blog__icon">
+                                                <use xlink:href="#time-blog"></use>
+                                            </svg> 30 minutes
+                                        </small>
+                                        <h5 class="card-title">Название карточки</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural. This content is a little bit longer.</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="section-blog__link col-lg-4 col-md-12" href="blog-article.html">
+                                <div class="card">
+                                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="post">
+                                    <div class="card-body card-body__blog">
+                                        <small class="text-muted cat">
+                                            <svg class="time-blog__icon">
+                                                <use xlink:href="#time-blog"></use>
+                                            </svg> 30 minutes
+                                        </small>
+                                        <h5 class="card-title">Название карточки</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural. This content is a little bit longer.</p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a class="section-blog__link col-lg-4 col-md-12" href="blog-article.html">
+                                <div class="card">
+                                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="post">
+                                    <div class="card-body card-body__blog">
+                                        <small class="text-muted cat">
+                                            <svg class="time-blog__icon">
+                                                <use xlink:href="#time-blog"></use>
+                                            </svg> 30 minutes
+                                        </small>
+                                        <h5 class="card-title">Название карточки</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural. This content is a little bit longer.</p>
+                                    </div>
+                                </div>
+                            </a> <!-- /card -->
+
+                        </div> <!-- /section-blog__card /row-->
+                    </div>
+                </section>
+
+                <div class="row load-more">
+                    <div class="col-12 load-more__contetnt">
+                        <a class="btn btn__white load-more__btn" href="#">Загрузить</a>
+                    </div>
+                </div>
+
+    <script src="{% static 'js/carousel.js' %}"></script>
+
+{% endblock %}

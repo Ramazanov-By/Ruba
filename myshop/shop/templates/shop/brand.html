@@ -1,0 +1,22 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.title }}{% else %}Products{% endif %}
+{% endblock %}
+{% block content %}
+    <section class="brand-section">
+            <h1 class="product__heading">Наши партнеры</h1>
+         <div class="row">
+            {% for c in brands %}
+
+                <div class="brand-item col-md-6">
+                        <div class="product-categories__item">
+                            <h3 class="product-categories__head">{{ c.name }}</h3>
+                            <img class="rounded-lg" src="{% if c.image %}{{ c.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="{{ c.name }}">
+                        </div>
+                </div>
+
+            {% endfor %}
+              </div>
+    </section>
+{% endblock %}

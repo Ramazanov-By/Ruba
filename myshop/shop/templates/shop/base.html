@@ -1,0 +1,224 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    <!-- Useful meta tags -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow, noodp">
+    <meta name="googlebot" content="index, follow">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <title>Ruba</title>
+</head>
+
+<body>
+    <svg style="display: none;">
+        <symbol id="cart" viewBox="0 0 510 510">
+            <g>
+                <path d="M153,408c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S181.05,408,153,408z M0,0v51h51l91.8,193.8L107.1,306
+    			c-2.55,7.65-5.1,17.85-5.1,25.5c0,28.05,22.95,51,51,51h306v-51H163.2c-2.55,0-5.1-2.55-5.1-5.1v-2.551l22.95-43.35h188.7
+    			c20.4,0,35.7-10.2,43.35-25.5L504.9,89.25c5.1-5.1,5.1-7.65,5.1-12.75c0-15.3-10.2-25.5-25.5-25.5H107.1L84.15,0H0z M408,408
+    			c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S436.05,408,408,408z" />
+            </g>
+        </symbol>
+
+        <symbol id="search" viewBox="0 0 50 50">
+            <g>
+                <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z" />
+            </g>
+        </symbol>
+
+        <symbol id="account" viewBox="0 0 510 510">
+            <g>
+                <path d="M255,0C114.75,0,0,114.75,0,255s114.75,255,255,255s255-114.75,255-255S395.25,0,255,0z M255,76.5
+    			c43.35,0,76.5,33.15,76.5,76.5s-33.15,76.5-76.5,76.5c-43.35,0-76.5-33.15-76.5-76.5S211.65,76.5,255,76.5z M255,438.6
+    			c-63.75,0-119.85-33.149-153-81.6c0-51,102-79.05,153-79.05S408,306,408,357C374.85,405.45,318.75,438.6,255,438.6z" />
+            </g>
+        </symbol>
+
+        <symbol id="open-menu" viewBox="0 0 512 512">
+            <g>
+                <path d="m464.883 64.267h-417.766c-25.98 0-47.117 21.136-47.117 47.149 0 25.98 21.137 47.117 47.117 47.117h417.766c25.98 0 47.117-21.137 47.117-47.117 0-26.013-21.137-47.149-47.117-47.149z" />
+                <path d="m464.883 208.867h-417.766c-25.98 0-47.117 21.136-47.117 47.149 0 25.98 21.137 47.117 47.117 47.117h417.766c25.98 0 47.117-21.137 47.117-47.117 0-26.013-21.137-47.149-47.117-47.149z" />
+                <path d="m464.883 353.467h-417.766c-25.98 0-47.117 21.137-47.117 47.149 0 25.98 21.137 47.117 47.117 47.117h417.766c25.98 0 47.117-21.137 47.117-47.117 0-26.012-21.137-47.149-47.117-47.149z" />
+            </g>
+        </symbol>
+
+        <symbol id="time-blog" viewBox="0 0 512 512">
+            <g>
+                <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm121.75 388.414062c-4.160156 4.160157-9.621094 6.253907-15.082031 6.253907-5.460938 0-10.925781-2.09375-15.082031-6.253907l-106.667969-106.664062c-4.011719-3.988281-6.25-9.410156-6.25-15.082031v-138.667969c0-11.796875 9.554687-21.332031 21.332031-21.332031s21.332031 9.535156 21.332031 21.332031v129.835938l100.417969 100.414062c8.339844 8.34375 8.339844 21.824219 0 30.164062zm0 0" />
+            </g>
+        </symbol>
+    </svg>
+
+    <!--Header-->
+    <header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <div class="row header__row">
+                <nav class="navbar-expand-lg col-12 nav">
+
+                    <div class="col-lg-2 d-flex justify-content-between">
+                        <a class="logo" href="{% url "shop:home" %}">Ruba.</a>
+
+                        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target=".navbarOpen" aria-controls="navbarOpen" aria-expanded="false" aria-label="Toggle navigation">
+                            <svg class="cart__icon">
+                                <use xlink:href="#open-menu"></use>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class=" col-lg-10 collapse navbar-collapse navbarOpen">
+
+                        <form method="get" class="form form__header col-lg-8"  action="{% url 'shop:product_list' %}">
+                            <div class="form__inner">
+                                <input class="form-search" name="search" type="search" placeholder="Поиск..." autocomplete="off">
+                                <button class="search__btn">
+                                    <svg class="search__icon">
+                                        <use xlink:href="#search"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="cart__container col-lg-4">
+                            <div class="cart">
+                                <a class="cart__link" href="{% url "cart:cart_detail" %}">
+                                <div class="cart__total">
+                                     <svg class="cart__icon">
+                                        <use xlink:href="#cart"></use>
+                                     </svg>
+                                     <div class="cart__number">
+                                        {% with total_items=cart|length %}
+                                                    {{ total_items }}
+                                         {% endwith %}
+                                        </div>
+
+                                    </div>
+                                Корзина
+                                </a>
+
+
+                                <a class="cart__link" href="authorization.html">
+                                    <svg class="cart__icon">
+                                        <use xlink:href="#account"></use>
+                                    </svg>
+                                    Войти
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </nav>
+            </div> <!-- /.row -->
+
+        </div> <!-- /.header__inner -->
+    </div> <!-- /.container -->
+
+</header>
+    <div class="container">
+        <div class="row">
+            <!-- menu -->
+            <div class="col-lg-2">
+
+                <aside class="sidebar">
+
+                    <nav class="navbar-expand-lg">
+                        <div class="sidebar__list flex-column collapse navbar-collapse navbarOpen">
+                            <a class="nav-link  sidebar__link" href="{% url "shop:home" %}">Главная</a>
+                            <a class="nav-link  sidebar__link"  href="{% url "shop:contacts_list" %}">Контакты</a>
+                            <a class="nav-link  sidebar__link" href="{% url "shop:about" %}">О нас</a>
+                            <a class="nav-link  sidebar__link" href="#">Блог</a>
+                        </div>
+
+                        <!-- меню -->
+                        <div class="sidebar__list flex-column collapse navbar-collapse navbarOpen">
+                            <div class="sidebar__head">Категории</div>
+
+                                <div class="card-body">
+                                        <a class="nav-link  sidebar__link" href="{% url "shop:product_list" %}">Все</a>
+                                        <a class="nav-link  sidebar__link" href="{% url "shop:product_listNew" %}">Новинки</a>
+                                        <a class="nav-link  sidebar__link" href="{% url "shop:product_listSale" %}">Распродажа</a>
+                                    {% for c in categories %}
+                                        <a class="nav-link  sidebar__link" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                                    {% endfor %}
+                                </div>
+
+                        </div> <!-- /sidebar__list  -->
+                        <!-- /меню -->
+                    </nav>
+
+                </aside>
+
+            </div>
+            <!--Content-->
+            <div class="col-lg-10">
+                    {% block content %}
+                    {% endblock %}
+            </div>
+
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="footer-info">
+                        <div class="contact">
+                            <a class="logo" href="{% url "shop:home" %}">Ruba</a>
+                            <div class="contact__text">Интернет-магазин Ruba. Одежда для занятий фитнесом и бодибилдингом.</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <div class="col-6">
+                            <div class="footer-menu">
+                                <nav class="footer-menu__list nav">
+                                        <a class="footer-menu__link" href="{% url "shop:product_listNew" %}">Новинки</a>
+                                        <a class="footer-menu__link" href="{% url "shop:product_listSale" %}">Распродажа</a>
+                                    {% for c in categories %}
+                                        <a class="footer-menu__link" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                                     {% endfor %}
+                                </nav>
+                        </div>
+
+            </div> <!-- /row -->
+
+            <div class="row text_field">
+                <p class="col footer__copy">
+                    Все права защищены. Ruba &copy;  {% now "Y" %}
+                </p>
+            </div>
+            </div>
+        </div> <!-- /container -->
+
+    </footer>
+
+
+    <!-- Подключаем jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/menu.js' %}"></script>
+
+</body>
+
+</html>

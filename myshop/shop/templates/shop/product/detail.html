@@ -1,0 +1,118 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.title }}{% else %}Products{% endif %}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <section class="section-tover">
+
+        <div class="section-tover__stage row">
+            <div class="col-md-6">
+
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="tab-content__images tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="list-img-1" role="tabpanel" aria-labelledby="list-home-list">
+                                <img class="img-fluid radius__img" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div> <!-- /col-md-6 -->
+
+            <div class="col-md-6">
+
+                <div class="tovar-inform">
+                    <h3 class="tovar-inform__head">{{ product.name }}</h3>
+                    <div class="tovar-inform__fcost card__price">{{ product.price }} руб</div>
+
+                    <p class="tovar-inform__text">
+                       {{ product.description }}
+                    </p>
+
+                    <form class="tovar__buy" action="{% url "cart:cart_add" product.id %}" method="post">
+                        {{ cart_product_form }}
+                        {% csrf_token %}
+                        <button class="btn btn__black amount__addToCart">В корзину</button>
+                    </form>
+
+
+                    <p class="tovar__category">
+                        <span class="category__title">Категория: </span>
+                        <a class="category__link" href="{{ product.category.get_absolute_url }}">{{ product.category }}</a>
+                    </p>
+
+                   <p class="tovar__size">
+                        Размер: {{ product.size }}
+                    </p>
+                </div><!-- /tovar-inform -->
+
+            </div> <!-- /col-md-6 -->
+
+        </div> <!-- /row -->
+
+        <div class="row">
+            <!-- Табы -->
+            <div class="col-10 m-auto">
+
+                <ul class="tovar-nav nav" id="myTab" role="tablist">
+                    <li class="tovar-nav__item nav-item">
+                        <a class="tovar-nav__link nav-link active" id="home-tab" data-toggle="tab" href="#description" role="tab" aria-controls="home" aria-selected="true">Описание</a>
+                    </li>
+                    <li class="tovar-nav__item nav-item">
+                        <a class="tovar-nav__link nav-link" id="profile-tab" data-toggle="tab" href="#characteristic" role="tab" aria-controls="profile" aria-selected="false">Характеристики</a>
+                    </li>
+                    <li class="tovar-nav__item nav-item">
+                        <a class="tovar-nav__link nav-link" id="contact-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="contact" aria-selected="false">Отзывы</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="home-tab">
+                        {{ product.description }}
+                    </div>
+
+                    <div class="tab-pane fade" id="characteristic" role="tabpanel" aria-labelledby="profile-tab">
+
+                        <div class="product-attributes row">
+                            <div class="col-md-6">
+                                <ul class="product-attribute__list">
+
+                                        <li class="product-attribute__item"></li>
+
+                                </ul>
+                            </div>
+                        </div> <!-- /product-attributes -->
+
+                    </div> <!-- /tab-pane -->
+
+                    <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="contact-tab">
+
+                        <form method="post" action="#" autocomplete="off">
+                            <div class="form-group">
+                                <textarea class="form-control form-textarea" rows="5" placeholder="Комментарий"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="name" class="form-control mr-3" placeholder="Имя">
+                                <input type="email" class="form-control" placeholder="Email">
+                            </div>
+
+                            <button type="submit" class="btn btn__black">Отправить</button>
+                        </form>
+
+                    </div> <!-- /tab-pane fade -->
+                </div>
+
+            </div>
+            <!-- /Табы -->
+        </div> <!-- /row -->
+
+    </section>
+</div>
+{% endblock %}

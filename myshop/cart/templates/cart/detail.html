@@ -1,0 +1,73 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    Корзина
+{% endblock %}
+{% block content %}
+<section class="section-cart">
+    <div class="container">
+
+        <div class="row section-cart__header">
+            <div class="section-cart__title col-sm-6">Корзина</div>
+            <a class="section-cart_clear col-sm-6" href="{% url "shop:product_list" %}" class="button light">Перейти к каталогу</a>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <ul class="cart__list">
+
+<!-- Проверка сколько товаров в корзине -->
+
+    {% with total_items=cart|length %}
+        {% if cart|length < 1 %}
+            <h4 class="car__length">В вашей корзине пока ничего нет</h4>
+        {% endif %}
+    {% endwith %}
+
+<!-- /Проверка сколько товаров в корзине -->
+
+        {% for item in cart %}
+            {% with product=item.product %}
+                    <li class="row cart__item">
+                        <div class="col-md-2 col-12 mb-2">
+                            <a class="cart__link" href="{{ product.get_absolute_url }}">
+                                <img class="rounded-lg" alt="cartProduct" src="
+                                {% if product.image %}
+                                    {{ product.image.url }}
+                                {% else %}
+                                    {% static "img/no_image.png" %}
+                                {% endif %}">
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-12 mb-2">
+                            <div class="cart__head">
+                                <a class="cart__link" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 mb-2">
+                            <p class="cart__price">{{ item.price }} руб</p>
+                        </div>
+                        <div class="col-md-2 col-10 mb-2">
+                            <div class="cart__quantity">{{ item.quantity }}</div>
+                        </div>
+                        <div class="col-md-1 col-2 mb-2">
+                                <a class="cart__close" href="{% url "cart:cart_remove" product.id%}"></a>
+                        </div>
+                    </li>
+            {% endwith %}
+        {% endfor %}
+                </ul>
+            </div> <!-- / col-12 -->
+        </div> <!-- / row -->
+
+        <div class="row section-cart__total">
+                <p class="section-cart__total-title col-6">Итого:</p>
+                <p class="section-cart__total-price col-6">{{ cart.get_total_price }} руб</p>
+                <a class="section-cart__total-link btn btn__black col-6" href="{% url "orders:order_create" %}">Оформить заказ</a>
+        </div>
+
+    </div>
+</section>
+
+
+{% endblock %}
