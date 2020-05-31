@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block title %}
     {% if category %}{{ category.name }}{% else %}Products{% endif %}
@@ -7,19 +7,19 @@
 
     <section class="product">
         <div class="container">
-            <div class="product__head row">
-                <div class="col-md-3 ml-auto">
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>Choose...</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
+            <div class="row">
+                <h1 class="product__heading">{% if category %}{{ category.name }}{% else %}Новинки{% endif %}</h1>
             </div>
-        <div class="row">
-            <h1 class="product__heading">{% if category %}{{ category.name }}{% else %}Новинки{% endif %}</h1>
-        </div>
+<!--            <div class="product__head row">-->
+<!--                <div class="col-md-3 ml-auto">-->
+<!--                    <select class="custom-select" id="inputGroupSelect01">-->
+<!--                        <option selected>Choose...</option>-->
+<!--                        <option value="1">One</option>-->
+<!--                        <option value="2">Two</option>-->
+<!--                        <option value="3">Three</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--            </div>-->
 
             <div class="product__list row">
 

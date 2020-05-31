@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block title %}
     Корзина
@@ -61,10 +61,44 @@
         </div> <!-- / row -->
 
         <div class="row section-cart__total">
-                <p class="section-cart__total-title col-6">Итого:</p>
-                <p class="section-cart__total-price col-6">{{ cart.get_total_price }} руб</p>
-                <a class="section-cart__total-link btn btn__black col-6" href="{% url "orders:order_create" %}">Оформить заказ</a>
+            {% if cart.coupon %}
+                <table>
+                    <tr class="subtotal">
+                        <td>Итог:</td>
+                        <td colspan="4"></td>
+                        <td class="num">{{ cart.get_total_price }} руб</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            "{{ cart.coupon.code }}" купон
+                            ({{ cart.coupon.discount }}%)
+                        </td>
+                        <td colspan="4"></td>
+                        <td class="num neg">
+                            : {{ cart.get_discount|floatformat:"2" }} руб
+                        </td>
+                    </tr>
+            {% endif %}
+                <tr class="total">
+                    <td>Итог со скидкой:</td>
+                    <td colspan="4"></td>
+                    <td class="num">
+                        {{ cart.get_total_price_after_discount|floatformat:"2" }} руб
+                    </td>
+                </tr>
+                </table>
         </div>
+        <div class="row">
+            <a class="section-cart__total-link btn btn__black col-6" href="{% url "orders:order_create" %}">Оформить заказ</a>
+        </div>
+        <div class="row cart-coupons">
+            <form action="{% url "coupons:apply" %}" method="post">
+                {{ coupon_apply_form }}
+                {% csrf_token %}
+            </form>
+            <input class="btn btn__black" type="submit" value="Применить">
+        </div>
+
 
     </div>
 </section>

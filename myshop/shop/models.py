@@ -44,10 +44,23 @@ class ProductSizes(models.Model):
         return self.title
 
 
+class Structure(models.Model):
+    title = models.CharField(max_length=30, verbose_name=u'Состав')
+    slug = models.SlugField(max_length=100, db_index=True, unique=True, null=True)
+
+    class Meta:
+        verbose_name = 'Состав'
+        verbose_name_plural = 'Составы'
+
+    def __str__(self):
+        return self.title
+
+
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', verbose_name=u'Категория')
+    structure = models.ManyToManyField(Structure, related_name='structure')
     brand = models.ForeignKey(Brand, related_name='products', verbose_name=u'Бренд', null=True)
-    size = models.ForeignKey(ProductSizes, null=True, verbose_name=u'Размер')
+    size = models.ForeignKey(ProductSizes, blank=True, verbose_name=u'Размер', null=True)
     name = models.CharField(max_length=200, db_index=True, verbose_name=u'Название')
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True, verbose_name=u'Фотография')
@@ -113,18 +126,3 @@ class About(models.Model):
     def __str__(self):
         return self.title
 
-
-class Comment(models.Model):
-    post = models.ForeignKey(Product, related_name='comments')
-    name = models.CharField(max_length=80, verbose_name=u'Имя')
-    email = models.EmailField()
-    body = models.TextField(verbose_name=u'Комментарий')
-    created = models.DateTimeField(auto_now_add=True, verbose_name=u'Дата создания')
-    updated = models.DateTimeField(auto_now=True, verbose_name=u'Дата обновления')
-    active = models.BooleanField(default=True, verbose_name=u'Опубликовать')
-
-    class Meta:
-        ordering = ('created',)
-
-    def __str__(self):
-        return 'Comment by {} on {}'.format(self.name, self.post)

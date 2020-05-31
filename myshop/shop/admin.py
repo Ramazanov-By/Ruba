@@ -1,6 +1,11 @@
 from django.contrib import admin
-from .models import Category, Product, ContactInfo, Banner, ProductSizes, About, Brand
+from .models import Category, Product, ContactInfo, Banner, ProductSizes, About, Brand, Structure
 
+class StructureAdmin(admin.ModelAdmin):
+    list_display = ['title', 'slug']
+    prepopulated_fields = {'slug': ('title',)}
+
+admin.site.register(Structure, StructureAdmin)
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
@@ -16,10 +21,6 @@ class BrandAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Brand, BrandAdmin)
-
-
-
-
 
 
 class ContactAdmin(admin.ModelAdmin):

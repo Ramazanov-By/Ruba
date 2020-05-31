@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block title %}
     {% if category %}{{ category.title }}{% else %}Products{% endif %}
@@ -47,7 +47,6 @@
                         <span class="category__title">Категория: </span>
                         <a class="category__link" href="{{ product.category.get_absolute_url }}">{{ product.category }}</a>
                     </p>
-
                    <p class="tovar__size">
                         Размер: {{ product.size }}
                     </p>
@@ -66,7 +65,7 @@
                         <a class="tovar-nav__link nav-link active" id="home-tab" data-toggle="tab" href="#description" role="tab" aria-controls="home" aria-selected="true">Описание</a>
                     </li>
                     <li class="tovar-nav__item nav-item">
-                        <a class="tovar-nav__link nav-link" id="profile-tab" data-toggle="tab" href="#characteristic" role="tab" aria-controls="profile" aria-selected="false">Характеристики</a>
+                        <a class="tovar-nav__link nav-link" id="profile-tab" data-toggle="tab" href="#characteristic" role="tab" aria-controls="profile" aria-selected="false">Состав</a>
                     </li>
                     <li class="tovar-nav__item nav-item">
                         <a class="tovar-nav__link nav-link" id="contact-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="contact" aria-selected="false">Отзывы</a>
@@ -84,7 +83,9 @@
                             <div class="col-md-6">
                                 <ul class="product-attribute__list">
 
-                                        <li class="product-attribute__item"></li>
+                                    {% for structure in structures %}
+                                       <li class="product-attribute__item">{{structure.title}}</li>
+                                    {%endfor%}
 
                                 </ul>
                             </div>
@@ -115,4 +116,5 @@
 
     </section>
 </div>
+
 {% endblock %}

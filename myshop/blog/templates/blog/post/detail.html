@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section-blog-article">
+    <div class="row">
+
+        <div class="col-md-6 blog-article__header">
+            <img class="img-fluid radius__img" src="{{ post.image.url }}">
+        </div>
+
+        <div class="col-md-6">
+            <div class="card-body card-body__blog">
+                <h5 class="card-title card-title__big">{{ post.title }}</h5>
+                <small class="text-muted cat">
+                    <svg class="time-blog__icon">
+                        <use xlink:href="#time-blog"></use>
+                    </svg> {{ post.publish|date:"d M Y" }}
+                </small>
+
+            </div>
+        </div>
+
+    </div> <!-- /row -->
+
+    <div class="row blog-article__content">
+        <div class="col-10 m-auto">
+            <p class="blog-article__text">{{ post.body|linebreaks }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-10 m-auto">
+<!-- Форма комментариев -->
+            <div class="form-post">
+                {% if new_comment %}
+                    <h2>Ваш комментарий был добавлен.</h2>
+                {% else %}
+                    <form action="." method="post">
+                        {{ comment_form.as_p }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn__black">Отправить</button>
+                    </form>
+                {% endif %}
+              </div>
+<!-- /Форма комментариев -->
+
+<!-- Вывод комментариев -->
+        <div class="post-comment">
+                <h3 class="post-comment__head">Комментарии:</h3>
+
+                {% for comment in comments %}
+                    <div class="comment">
+                        <p class="info">
+                            <strong>{{ comment.name }} </strong>
+                            {{ comment.created|date:"d M Y" }}
+                        </p>
+                        {{ comment.body|linebreaks }}
+                    </div>
+                {% empty %}
+                    <p>Пока нет комментариев.</p>
+                {% endfor %}
+        </div>
+ <!-- /Вывод комментариев -->
+
+        </div>
+    </div> <!-- /row -->
+
+
+</section>
+
+
+{% endblock %}
+

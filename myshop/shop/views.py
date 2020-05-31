@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Product, ContactInfo, Banner, Brand, About
+from .models import Category, Product, ContactInfo, Banner, Brand, About, Structure
 from cart.forms import CartAddProductForm
+from blog.models import Post
 from django.db.models import Q
 
 
@@ -10,6 +11,8 @@ def home(request, category_slug=None):
     brands = Brand.objects.all()[:3]
     banners = Banner.objects.all()
     abouts = About.objects.all()
+
+    posts = Post.objects.all().order_by('-created')[:3]
 
     products = Product.objects.filter(available=True)
     new = Product.objects.filter(new=True).order_by('-created')[:4]
@@ -27,7 +30,8 @@ def home(request, category_slug=None):
                    'sale': sale,
                    'banners': banners,
                    'abouts': abouts,
-                   'brands':brands})
+                   'brands': brands,
+                   'posts': posts})
 
 
 def contacts_list(request, category_slug=None):
@@ -135,6 +139,7 @@ def product_listSale(request, category_slug=None):
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm()
+    structures = Structure.objects.all()
 
     category = None
     categories = Category.objects.all()
@@ -144,7 +149,7 @@ def product_detail(request, id, slug):
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'category': category,
-                   'categories': categories
-                   })
+                   'categories': categories,
+                   'structures': structures})
 
 

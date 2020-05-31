@@ -1,4 +1,4 @@
-{% extends "shop/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Checkout{% endblock %}
 
@@ -17,17 +17,24 @@
     <div class="col-md-6">
     <div class="order-info">
     <h3>Ваша корзина</h3>
-        <ul class="order__list">
+        <ul>
             {% for item in cart %}
-                <li class="order__item">
-                  {{ item.product.name }}  <span class="order__quantity">{{ item.quantity }} - шт.</span>
-                    <div class="order__item-total">{{ item.total_price }} руб</div>
+                <li>
+                    {{ item.quantity }}x {{ item.product.name }}
+                    <span>${{ item.total_price }}</span>
                 </li>
             {% endfor %}
+            {% if cart.coupon %}
+                <li>
+                    "{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
+                    <span>- ${{ cart.get_discount|floatformat:"2" }}</span>
+                </li>
+            {% endif %}
         </ul>
-        <p class="order__total">Итого: {{ cart.get_total_price }} руб</p>
+        <p class="order__total">Итого: {{ cart.get_total_price_after_discount|floatformat:"2" }} руб</p>
     </div>
 </div>
 </div>
+
 
 {% endblock %}
