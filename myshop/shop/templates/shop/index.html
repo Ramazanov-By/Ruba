@@ -136,24 +136,26 @@
                     </div>
                 </div> <!-- /product-->
 
-                <div class="section-blog__card row">
-                    {% for post in posts %}
-                            <a class="section-blog__link col-lg-4 col-md-12" href="{{ post.get_absolute_url }}">
-                                <div class="card">
-                                    <img src="{{ post.image.url }}"  class="card-img-top" alt="post">
-                                    <div class="card-body post-body">
-                                        <small class="text-muted cat">
-                                            <svg class="time-blog__icon">
-                                                <use xlink:href="#time-blog"></use>
-                                            </svg> {{ post.publish|date:"d M Y" }}
-                                        </small>
-                                        <h5 class="card-title">{{ post.title }}</h5>
-                                        <p class="card-text">{{ post.body|truncatewords:20 }}</p>
+            <div class="container">
+                    <div class="section-blog__card row">
+                        {% for post in posts %}
+                                <a class="section-blog__link col-lg-4 col-md-12" href="{{ post.get_absolute_url }}">
+                                    <div class="card">
+                                        <img src="{{ post.image.url }}"  class="card-img-top" alt="post">
+                                        <div class="card-body post-body">
+                                            <small class="text-muted cat">
+                                                <svg class="time-blog__icon">
+                                                    <use xlink:href="#time-blog"></use>
+                                                </svg> {{ post.publish|date:"d M Y" }}
+                                            </small>
+                                            <h5 class="card-title">{{ post.title }}</h5>
+                                            <p class="card-text">{{ post.body|truncatewords:20 }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                    {% endfor %}
-                </div> <!-- /section-blog__card /row-->
+                                </a>
+                        {% endfor %}
+                    </div> <!-- /section-blog__card /row-->
+                </div>
 
 
                 <div class="row load-more">

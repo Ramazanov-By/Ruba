@@ -48,12 +48,21 @@
                             <p class="cart__price">{{ item.price }} руб</p>
                         </div>
                         <div class="col-md-2 col-10 mb-2">
-                            <div class="cart__quantity">{{ item.quantity }}</div>
+                            <div class="cart__quantity">
+                                <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                    {{ item.update_quantity_form.quantity }}
+                                     {{ item.update_quantity_form.update }}
+                                        <input class=" btn__black btn__update" type="submit" value="+">
+                                     {% csrf_token %}
+                                </form>
+                            </div>
                         </div>
                         <div class="col-md-1 col-2 mb-2">
                                 <a class="cart__close" href="{% url "cart:cart_remove" product.id%}"></a>
                         </div>
+
                     </li>
+
             {% endwith %}
         {% endfor %}
                 </ul>
@@ -61,47 +70,54 @@
         </div> <!-- / row -->
 
         <div class="row section-cart__total">
-            {% if cart.coupon %}
                 <table>
-                    <tr class="subtotal">
-                        <td>Итог:</td>
+                    {% if cart.coupon %}
+                        <tr class="subtotal">
+                            <td>Промежуточный итог: </td>
+                            <td colspan="4"></td>
+                            <td class="num">{{ cart.get_total_price }} руб</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                "{{ cart.coupon.code }}" купон
+                                ({{ cart.coupon.discount }}% скидка)
+                            </td>
+                            <td colspan="4"></td>
+                            <td class="num neg">
+                                : {{ cart.get_discount|floatformat:"2" }} руб
+                            </td>
+                        </tr>
+                        <tr class="total">
+                            <td>Итог: </td>
+                            <td colspan="4"></td>
+                            <td class="num">
+                                {{ cart.get_total_price_after_discount|floatformat:"2" }} руб
+                            </td>
+                        </tr>
+
+                    {% else %}
+                    <tr class="total">
+                        <td>Итог: </td>
                         <td colspan="4"></td>
-                        <td class="num">{{ cart.get_total_price }} руб</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            "{{ cart.coupon.code }}" купон
-                            ({{ cart.coupon.discount }}%)
-                        </td>
-                        <td colspan="4"></td>
-                        <td class="num neg">
-                            : {{ cart.get_discount|floatformat:"2" }} руб
+                        <td class="num">
+                            {{ cart.get_total_price }} руб
                         </td>
                     </tr>
-            {% endif %}
-                <tr class="total">
-                    <td>Итог со скидкой:</td>
-                    <td colspan="4"></td>
-                    <td class="num">
-                        {{ cart.get_total_price_after_discount|floatformat:"2" }} руб
-                    </td>
-                </tr>
+                    {% endif %}
                 </table>
         </div>
         <div class="row">
             <a class="section-cart__total-link btn btn__black col-6" href="{% url "orders:order_create" %}">Оформить заказ</a>
         </div>
         <div class="row cart-coupons">
-            <form action="{% url "coupons:apply" %}" method="post">
-                {{ coupon_apply_form }}
-                {% csrf_token %}
-            </form>
-            <input class="btn btn__black" type="submit" value="Применить">
+                <form action="{% url "coupons:apply" %}" method="post">
+                    {{ coupon_apply_form }}
+                        <input class="btn btn__black amount__addToCart" type="submit" value="Применить">
+                    {% csrf_token %}
+                </form>
         </div>
 
 
     </div>
 </section>
-
-
 {% endblock %}

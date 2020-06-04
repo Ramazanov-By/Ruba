@@ -163,7 +163,7 @@ ul {
     width: 0.6rem;
     height: 0.6rem;
     margin-right: 1.3rem;
-    background: url(../../../media/img/close.png) no-repeat;
+    background: url(../../media/img/close.png) no-repeat;
     background-size: cover;
     cursor: pointer;
 }
@@ -178,6 +178,10 @@ ul {
     padding: 0.5rem;
     border: 1px solid #f5f5f5;
     background: #fafafa;
+}
+
+.cart__quantity #id_quantity {
+    padding: 2px 0;
 }
 
 .form-control {
@@ -410,6 +414,10 @@ ul {
     margin-bottom: 0;
 }
 
+.sidebar__link:first-letter {
+    text-transform: uppercase;
+}
+
 @media (max-width: 992px) {
     .sidebar__link {
         text-align: center;
@@ -556,6 +564,11 @@ ul {
     color: #fff;
 }
 
+.btn__update {
+    border: none;
+    padding: 0 10px;
+}
+
 .product-categories {
     margin-bottom: 2.333rem;
 }
@@ -668,7 +681,7 @@ ul {
     margin-bottom: 2.3rem;
 }
 
-.form-post input, textarea{
+.form-post input, textarea {
     width: 100%;
     margin-bottom: 1rem;
     padding: 1rem;
@@ -682,7 +695,7 @@ ul {
     width: 100%;
 }
 
-.post-comment .info{
+.post-comment .info {
     color: #71949b;
 }
 
@@ -1152,7 +1165,7 @@ ul {
     height: 15px;
 
     border: none;
-    background: url(../../../media/img/close.png) no-repeat;
+    background: url(../../media/img/close.png) no-repeat;
     background-size: cover;
 
     -webkit-transition: opacity 0.1s;
@@ -1161,7 +1174,8 @@ ul {
 }
 
 .cart__close:hover {
-    opacity: 0.6;.section-cart__total
+    opacity: 0.6;
+. section-cart__total
 }
 
 .section-cart__total {
@@ -1181,6 +1195,19 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.cart-coupons label {
+    margin-right: 1rem;
+}
+
+#id_code {
+    margin-bottom: 1rem;
+    padding: 0.77rem 1rem;
+    font-size: .8rem;
+    border: 1px solid #b5c4c7;
+    background: #fafafa;
+    border-radius: 0;
 }
 
 .footer {

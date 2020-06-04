@@ -1,0 +1,78 @@
+td, th {
+    padding: 15px 5px;
+}
+
+#header {
+    width: 100%;
+    background: #71949b;
+    color: #fff;
+    overflow: hidden;
+    padding: 5px 0;
+}
+
+#branding h1 {
+    margin: 15px 0;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #ffffff;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 10px 5px;
+    font-size: 15px;
+    text-align: left;
+    font-weight: bold;
+    background: #b5c4c7;
+    color: #fff;
+}
+
+#content-related .module h2 {
+    background: #b5c4c7;
+    color: #fff;
+}
+
+.module {
+    border: none;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #71949b;
+    padding: 10px;
+    color: #fff;
+    border: none;
+}
+
+.button:active, input[type=submit]:active, input[type=button]:active {
+    background-image: none;
+    background-color: #466269;
+    background-position: top;
+}
+
+#user-tools {
+    font-size: 15px;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    border: none;
+}
+
+input[type=text], input[type=password],
+input[type=email], input[type=url],
+input[type=number], textarea, select, .vTextField {
+    margin-bottom: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: .8rem;
+    border: 1px solid #b5c4c7;
+    background: #fafafa;
+    border-radius: 0;
+}
+
+input, textarea, select, .form-row p, form .button {
+    vertical-align: baseline;
+}
+
+#content-related {
+    margin-right: -22em;
+}
