@@ -97,7 +97,6 @@ def product_list(request, category_slug=None):
                    'categories': categories,
                    'products': products})
 
-
 def product_listNew(request, category_slug=None):
     search_query = request.GET.get('search', '')
     if search_query:

@@ -42,6 +42,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['available', 'created', 'updated', 'new', 'sale']
     list_editable = ['price', 'available', 'new', 'sale']
     prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name',)
 
 
 admin.site.register(Product, ProductAdmin)

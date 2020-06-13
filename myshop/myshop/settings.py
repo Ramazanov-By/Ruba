@@ -1,16 +1,10 @@
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'lgb$2=z#s@+-62@790-^e1f!a*9z*bnoi+r+g6xb3)62*9i!8h'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -30,6 +24,7 @@ INSTALLED_APPS = (
     'orders',
     'blog',
     'coupons',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -74,10 +69,6 @@ DATABASES = {
     }
 }
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
-
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
@@ -102,3 +93,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     '/var/www/static/',
 )
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
