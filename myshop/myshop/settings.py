@@ -10,7 +10,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# Определение приложения
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -24,7 +24,6 @@ INSTALLED_APPS = (
     'orders',
     'blog',
     'coupons',
-    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,8 +92,3 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     '/var/www/static/',
 )
-
-GRAPH_MODELS = {
-  'all_applications': True,
-  'group_models': True,
-}

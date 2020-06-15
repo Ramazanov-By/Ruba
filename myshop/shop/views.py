@@ -63,7 +63,7 @@ def about(request, category_slug=None):
                    'categories': categories,
                    'about': about})
 
-
+#представления для брендов
 def brand(request, category_slug=None):
     category = None
     categories = Category.objects.all()
