@@ -41,6 +41,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]
     actions = [export_to_csv]
-
+    search_fields = ('id', 'first_name', 'last_name')
 
 admin.site.register(Order, OrderAdmin)

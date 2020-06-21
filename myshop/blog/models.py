@@ -13,9 +13,9 @@ class Post(models.Model):
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     body = models.TextField(verbose_name=u'Текст')
     author = models.ForeignKey(User, related_name='blog_posts')
-    image = models.ImageField(upload_to='blog/%Y/%m/%d', blank=True, verbose_name=u'Фотография')
+    image = models.ImageField(upload_to='blog/%Y/%m/%d', verbose_name=u'Фотография')
     publish = models.DateTimeField(default=timezone.now, verbose_name=u'Опубликовать')
-    created = models.DateTimeField(auto_now_add=True,verbose_name=u'Дата создания')
+    created = models.DateTimeField(auto_now_add=True,verbose_name=u'Опубликовать')
     updated = models.DateTimeField(auto_now=True, verbose_name=u'Дата обновления')
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft', verbose_name=u'Стус')
 

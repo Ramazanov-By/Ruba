@@ -29,9 +29,10 @@ class Order(models.Model):
         total_cost = sum(item.get_cost() for item in self.items.all())
         return total_cost - total_cost * (self.discount / Decimal('100'))
 
-
     coupon = models.ForeignKey(Coupon, related_name='orders', null=True, blank=True)
+
     discount = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', verbose_name=u'Заказ')
