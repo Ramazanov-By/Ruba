@@ -4,7 +4,7 @@
 - Gulp
 - javascript/jQuery
 - Python/Django
-- sqlite
+- SQLite
 
 **Интернет магазин Ruba**
 - python
